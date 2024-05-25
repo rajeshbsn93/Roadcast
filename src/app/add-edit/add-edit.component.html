@@ -1,0 +1,45 @@
+<h2 mat-dialog-title>{{data ? 'Edit' : 'Add'}}</h2>
+<mat-dialog-content class="mat-typography">
+<form [formGroup]="contactForm" (ngSubmit)="onSubmit()">
+    <div class="row">
+        <div class="col-4">
+            <mat-form-field class="w-100"  appearance="fill">
+                <mat-label>Name</mat-label>
+                <input matInput  formControlName="name">
+              </mat-form-field>
+            <div *ngIf="contactForm.get('name')?.invalid && contactForm.get('name')?.touched">
+              <small>required and at least 3 characters.</small>
+            </div>
+        </div>
+        <div class="col-4">
+            <mat-form-field class="w-100"  appearance="fill">
+                <mat-label>Phone</mat-label>
+                <input matInput  formControlName="phone">
+              </mat-form-field>
+              <div *ngIf="contactForm.get('phone')?.invalid && contactForm.get('phone')?.touched">
+                <small *ngIf="contactForm.get('phone')?.hasError('required')">Phone number is required</small>
+                <small *ngIf="contactForm.get('phone')?.hasError('pattern')">
+                  Phone number must be 10 digits
+                </small>
+              </div>
+        </div>
+        <div class="col-4">
+            <mat-form-field class="w-100"  appearance="fill">
+                <mat-label>Email</mat-label>
+                <input matInput  formControlName="email">
+              </mat-form-field>
+              <div *ngIf="contactForm.get('email')?.invalid && contactForm.get('email')?.touched">
+                <small>Enter a valid email.</small>
+              </div>
+        </div>
+        <div class="col-12 text-center">
+            <button mat-flat-button color="primary" type="submit" [disabled]="contactForm.invalid">Save</button>
+        </div>
+    </div> 
+    
+  </form>
+</mat-dialog-content>
+<!-- <mat-dialog-actions align="end"> -->
+  <!-- <button mat-button mat-dialog-close cdkFocusInitial>Cancel</button> -->
+  <!-- <button mat-button [mat-dialog-close]="true" cdkFocusInitial>Install</button> -->
+<!-- </mat-dialog-actions> -->
