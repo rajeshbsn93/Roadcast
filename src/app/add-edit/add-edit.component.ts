@@ -6,12 +6,13 @@ import {MAT_DIALOG_DATA, MatDialog, MatDialogModule} from '@angular/material/dia
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
+import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'app-add-edit',
   standalone: true,
   imports: [NgIf,ReactiveFormsModule,MatButtonModule,MatDialogModule,
-    MatFormFieldModule, MatInputModule
+    MatFormFieldModule, MatInputModule, MatIconModule
   ],
   templateUrl: './add-edit.component.html',
   styleUrl: './add-edit.component.scss'

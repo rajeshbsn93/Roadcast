@@ -42,8 +42,4 @@ export class ListService {
     this.contacts = this.contacts.filter(c => c.id !== id);
     this.contactsSubject.next([...this.contacts]);
   }
-
-  getContactById(id: number): ContactEntity | undefined {
-    return this.contacts.find(c => c.id === id);
-  }
 }

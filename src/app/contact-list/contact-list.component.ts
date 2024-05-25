@@ -51,7 +51,8 @@ export class ContactListComponent {
       console.log('edit')  
       dialogRef = this.dialog.open(AddEditComponent,{
         width:'900px',
-        data:data
+        data:data,
+        autoFocus:false
       })
     }else{
       console.log('add') 
@@ -66,9 +67,8 @@ export class ContactListComponent {
     });
   }
 
-  deleteContact(id: number) {
-    console.log(id)
-    const deleteMeaage = {message:'Are you sure want to delete',title:'Delete data'}
+  deleteContact(rowData: ContactEntity) {
+    const deleteMeaage = {message:'Do you realy want to delete this record? This process cannot be undone.',title:'Delete Confirmation'}
     let dialogRef = this.dialog.open(DeleteDialogComponent,{
       width:'350px',
       data:deleteMeaage
@@ -76,7 +76,7 @@ export class ContactListComponent {
     // alert('Contact deleted successfully!');
     dialogRef.afterClosed().subscribe(result=>{
       if(result){
-        this.listService.deleteContact(id);
+        this.listService.deleteContact(rowData.id);
       }
     })
     

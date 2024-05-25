@@ -7,27 +7,27 @@
     <table mat-table [dataSource]="contacts" matSort>
   
       <ng-container matColumnDef="name">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header>Name</th>
+        <th class="col-4" mat-header-cell *matHeaderCellDef mat-sort-header>Name</th>
         <td mat-cell *matCellDef="let contact">{{contact.name}}</td>
       </ng-container>
   
       <ng-container matColumnDef="phone">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header>Phone</th>
+        <th class="col-4" mat-header-cell *matHeaderCellDef mat-sort-header>Phone</th>
         <td mat-cell *matCellDef="let contact">{{contact.phone}}</td>
       </ng-container>
   
       <ng-container matColumnDef="email">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header>Email</th>
+        <th class="col-4" mat-header-cell *matHeaderCellDef mat-sort-header>Email</th>
         <td mat-cell *matCellDef="let contact">{{contact.email}}</td>
       </ng-container>
   
       <ng-container matColumnDef="actions">
         <th mat-header-cell *matHeaderCellDef>Actions</th>
-        <td mat-cell *matCellDef="let row" class="col-2 col-lg-1">
-          <button mat-mini-fab  (click)="addEdit(row)" color="primary">
+        <td mat-cell *matCellDef="let row" class="actions">
+          <button class="me-1" mat-mini-fab  (click)="addEdit(row)" color="primary">
             <mat-icon>edit</mat-icon>
           </button>
-          <button  mat-mini-fab (click)="deleteContact(row.id)" color="warn">
+          <button  mat-mini-fab (click)="deleteContact(row)" color="warn">
             <mat-icon>delete</mat-icon>
           </button>
         </td>

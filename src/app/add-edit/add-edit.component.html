@@ -1,4 +1,7 @@
-<h2 mat-dialog-title>{{data ? 'Edit' : 'Add'}}</h2>
+<h2 mat-dialog-title class="d-flex justify-content-between align-items-center pt-2">
+  <span>{{data ? 'Edit' : 'Add'}}</span> 
+  <mat-icon  mat-dialog-close>close</mat-icon>
+</h2>
 <mat-dialog-content class="mat-typography">
 <form [formGroup]="contactForm" (ngSubmit)="onSubmit()">
     <div class="row">
@@ -8,7 +11,9 @@
                 <input matInput  formControlName="name">
               </mat-form-field>
             <div *ngIf="contactForm.get('name')?.invalid && contactForm.get('name')?.touched">
-              <small>required and at least 3 characters.</small>
+              <small class="text-danger" *ngIf="contactForm.get('name')?.hasError('required')"> Name is required</small>
+              <small class="text-danger" *ngIf="contactForm.get('name')?.hasError('pattern')"> Only characters & at least 3 characters</small>
+              <!-- <small class="text-danger" *ngIf="contactForm.get('name')?.hasError('pattern')"> Only characters & at least 3 characters & separate with 1 space</small> -->
             </div>
         </div>
         <div class="col-4">
@@ -17,9 +22,9 @@
                 <input matInput  formControlName="phone">
               </mat-form-field>
               <div *ngIf="contactForm.get('phone')?.invalid && contactForm.get('phone')?.touched">
-                <small *ngIf="contactForm.get('phone')?.hasError('required')">Phone number is required</small>
-                <small *ngIf="contactForm.get('phone')?.hasError('pattern')">
-                  Phone number must be 10 digits
+                <small class="text-danger" *ngIf="contactForm.get('phone')?.hasError('required')">Phone number is required</small>
+                <small class="text-danger" *ngIf="contactForm.get('phone')?.hasError('pattern')">
+                  Enter valid phone & must be 10 digits
                 </small>
               </div>
         </div>
@@ -29,10 +34,11 @@
                 <input matInput  formControlName="email">
               </mat-form-field>
               <div *ngIf="contactForm.get('email')?.invalid && contactForm.get('email')?.touched">
-                <small>Enter a valid email.</small>
+                <small class="text-danger" *ngIf="contactForm.get('email')?.hasError('required')">Email is required</small>
+                <small class="text-danger" *ngIf="contactForm.get('email')?.hasError('email')">Enter valid email</small>
               </div>
         </div>
-        <div class="col-12 text-center">
+        <div class="col-12 text-center mt-3">
             <button mat-flat-button color="primary" type="submit" [disabled]="contactForm.invalid">Save</button>
         </div>
     </div> 
