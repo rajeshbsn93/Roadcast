@@ -46,25 +46,24 @@ export class ContactListComponent {
     });
   }
   addEdit(data:any){
-    let dialogRef
     if(data){
-      console.log('edit')  
-      dialogRef = this.dialog.open(AddEditComponent,{
-        width:'900px',
-        data:data,
-        autoFocus:false
-      })
+      console.log('edit') 
+      this.addEditModal(data)
     }else{
       console.log('add') 
-      dialogRef = this.dialog.open(AddEditComponent,{
-        width:'900px',
-        data:data,
-        autoFocus: false
-      })     
+       this.addEditModal(data)  
     }
+    
+  }
+  addEditModal(data:any){
+    const dialogRef = this.dialog.open(AddEditComponent,{
+      width:'900px',
+      data:data,
+      autoFocus: false
+    }) 
     dialogRef?.afterClosed().subscribe(result => {
       console.log(`Dialog result: ${result}`);
-    });
+    }); 
   }
 
   deleteContact(rowData: ContactEntity) {

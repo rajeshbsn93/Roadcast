@@ -42,7 +42,6 @@ export class AddEditComponent {
 
   onSubmit() {
     if (this.contactForm.valid) {
-      // this.save.emit(this.contactForm.value);
       if(this.data){
         this.listService.updateContact(this.contactForm.value);
         this.dialog.closeAll();
